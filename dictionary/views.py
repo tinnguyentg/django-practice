@@ -31,7 +31,9 @@ class Detail(generic.DetailView):
         oxford_entries = Entries(word)
         oxford_entries_result = oxford_entries.result()
 
-        if oxford_entries_result.get("error"):
+        if oxford_entries_result.get("msg"):
+            context["oxford_error"] = oxford_entries_result
+        elif oxford_entries_result.get("error"):
             context["object"].is_headword = False
             context["object"].save()
             oxford_lemmas = Lemmas(word)

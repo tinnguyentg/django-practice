@@ -10,8 +10,12 @@
     <h1 class="text-2xl font-black text-center">{{ object.word }}</h1>
 </div>
 
-<section>
-{% if oxford_entries %}
+<section class="mt-4">
+{% if oxford_error %}
+    <p class="text-red-500">
+        {{ oxford_error.msg }}
+    </p>
+{% elif oxford_entries %}
     {% include "dictionary/entries.html" with data=oxford_entries %}
 {% elif oxford_lemmas %}
     {% include "dictionary/lemmas.html" with data=oxford_lemmas %}
