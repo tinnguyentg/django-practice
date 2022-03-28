@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Project apps
+    "dictionary",
 ]
 
 MIDDLEWARE = [
@@ -110,3 +112,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+OXFORD_APP_ID = "YOUR_OXFORD_DICTIONARY_APP_ID"
+OXFORD_APP_KEY = "YOUR_OXFORD_DICTIONARY_APP_KEY"

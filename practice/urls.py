@@ -19,6 +19,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", include("dictionary.urls")),
 ]
 
 if "debug_toolbar" in settings.INSTALLED_APPS:
