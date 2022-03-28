@@ -18,7 +18,7 @@
 
 .word {
     @apply block w-auto text-center p-2 border rounded mr-2 mb-2;
-    @apply hover:shadow-md;
+    @apply hover:shadow-md hover:border-r-blue-500;
 }
 
 .not-headword {
