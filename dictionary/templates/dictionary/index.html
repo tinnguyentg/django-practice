@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Dictionary Index</h1>
+
+<div>
+    <form action="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% if words %}
+<div>
+    {% for word in words %}
+    <a href="">{{ word.word }}</a>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
