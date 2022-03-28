@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+
+    input {
+        @apply p-2 border;
+    }
+}
+
+.btn {
+    @apply p-2 border font-semibold;
+}
+.submit-btn {
+    @apply hover:bg-green-400 hover:text-white;
+}
+
+.word {
+    @apply block w-auto text-center p-2 border rounded mr-2 mb-2;
+    @apply hover:shadow-md;
+}
+
+.not-headword {
+    @apply border-r-red-500 border-r-2;
+}
+.headword {
+    @apply border-r-green-500 border-r-2;
+}

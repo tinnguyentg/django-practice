@@ -1,21 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Dictionary Index</h1>
+<h1 class="text-2xl text-center font-black">Dictionaries</h1>
 
-<div>
-    <form action="post">
+<div class="mt-4">
+    <form class="flex justify-center items-center" method="post">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit">Submit</button>
+        
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+        <div>
+            {{ field.errors }}
+            {{ field }}
+        </div>
+        {% endfor %}
+
+        <button class="btn submit-btn rounded-r" type="submit">Submit</button>
     </form>
 </div>
 
 {% if words %}
-<div>
+<section class="mt-4 flex flex-row flex-wrap">
     {% for word in words %}
-    <a href="">{{ word.word }}</a>
+    <a href="">
+        <span class="word {{ word.is_headword|yesno:"headword,not-headword"}}">
+            {{ word.word }}
+        </span>
+    </a>
     {% endfor %}
-</div>
+</section>
 {% endif %}
 {% endblock %}
