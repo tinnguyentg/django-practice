@@ -1,13 +1,15 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <main>
+    <main class="mt-8 mx-6 sm:w-3/4 sm:mx-auto md:w-1/2">
         {% block content %}
         {% endblock content %}
     </main>    
