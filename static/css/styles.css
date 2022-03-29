@@ -477,10 +477,6 @@ input, select {
   position: static;
 }
 
-.fixed {
-  position: fixed;
-}
-
 .inset-x-0 {
   left: 0px;
   right: 0px;
@@ -500,11 +496,6 @@ input, select {
   margin-right: 0.25rem;
 }
 
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
 }
@@ -513,12 +504,12 @@ input, select {
   margin-top: 1rem;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .block {
@@ -529,12 +520,16 @@ input, select {
   display: flex;
 }
 
-.list-item {
-  display: list-item;
-}
-
 .hidden {
   display: none;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.grow {
+  flex-grow: 1;
 }
 
 .list-inside {
@@ -575,10 +570,6 @@ input, select {
   border-bottom-left-radius: 0.25rem;
 }
 
-.border-b-2 {
-  border-bottom-width: 2px;
-}
-
 .border-b {
   border-bottom-width: 1px;
 }
@@ -586,21 +577,6 @@ input, select {
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
-}
-
-.bg-blue-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
-}
-
-.bg-gray-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
-}
-
-.bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
 .p-2 {
@@ -632,16 +608,8 @@ input, select {
   font-weight: 700;
 }
 
-.uppercase {
-  text-transform: uppercase;
-}
-
 .lowercase {
   text-transform: lowercase;
-}
-
-.capitalize {
-  text-transform: capitalize;
 }
 
 .text-red-500 {
@@ -649,23 +617,9 @@ input, select {
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
-}
-
-.underline {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
-}
-
-.opacity-50 {
-  opacity: 0.5;
 }
 
 .opacity-80 {
@@ -749,5 +703,17 @@ input, select {
 @media (min-width: 768px) {
   .md\:w-1\/2 {
     width: 50%;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:justify-between {
+    justify-content: space-between;
+  }
+
+  .md\:justify-around {
+    justify-content: space-around;
   }
 }

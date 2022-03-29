@@ -8,10 +8,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body>
-    <main class="mt-8 mx-6 sm:w-3/4 sm:mx-auto md:w-1/2">
+<body class="flex flex-col h-screen">
+    <main class="grow mt-8 mx-6 sm:w-3/4 sm:mx-auto md:w-1/2">
         {% block content %}
         {% endblock content %}
     </main>    
+    {% include 'footer.html' %}
 </body>
 </html>
