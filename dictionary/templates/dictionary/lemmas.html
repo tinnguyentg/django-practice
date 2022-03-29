@@ -1,1 +1,16 @@
-{{data}}
+{% if data.results %}
+    <div class="flex flex-col">
+        {% for result in data.results %}
+            {% for lexicalentry in result.lexicalEntries %}
+                {% for word in lexicalentry.inflectionOf %}
+                    <a class="text-blue-500 hover:underline" href="{% url 'dictionary:detail' object.source word.id|slugify %}?forceInsert=1&word={{word.text}}">
+                        <span>{{ word.id }} ({{ lexicalentry.lexicalCategory.id }})</span>
+                    </a>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+{% else %}
+    <p>No results for <span class="font-bold">{{ object.word }}</span></p>
+{% endif %}

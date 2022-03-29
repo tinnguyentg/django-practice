@@ -1,1 +1,36 @@
-{{data}}
+{% for result in data.results %}
+    {% for lexicalentry in result.lexicalEntries %}
+        <section class="mb-2">
+            <div class="p-2 font-bold border-b border-black">
+                {{ object.word }}
+                <span class="lowercase opacity-80 mx-1">({{ lexicalentry.lexicalCategory.id }})</span>
+            </div>
+
+            {% for entry in lexicalentry.entries %}
+
+                {% if entry.pronunciations %}
+                <div class="p-4">
+                    {% for pronunciation in entry.pronunciations %}
+                        <span>/{{ pronunciation.phoneticSpelling }}/</span>
+                        {% if pronunciation.audioFile %}
+                            <audio controls src="{{ pronunciation.audioFile }}"></audio>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% for sense in entry.senses %}
+                <div>
+                    <p>{{ sense.definitions.0 }}</p>
+                    <ul class="list-disc list-inside">
+                        {% for example in sense.examples %}
+                            <li>{{ example.text }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+
+            {% endfor %}
+        </section>
+    {% endfor %}
+{% endfor %}

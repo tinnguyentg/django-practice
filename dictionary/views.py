@@ -1,6 +1,7 @@
 from typing import Any, Dict
 
 from django.db import models
+from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.text import slugify
@@ -61,3 +62,18 @@ class Detail(generic.DetailView):
         source = self.kwargs["source"]
         slug = self.kwargs["slug"]
         return Dictionary.objects.filter(source=source, slug=slug)
+
+    def get_object(self) -> Dictionary:
+        object = None
+        try:
+            object = self.get_queryset().get()
+        except Dictionary.DoesNotExist:
+            word = self.request.GET.get("word")
+            source = self.kwargs["source"]
+            if bool(int(self.request.GET.get("forceInsert", "0"))) and word:
+                object = Dictionary(source=source, word=word)
+                object.save()
+
+        if not object:
+            raise Http404
+        return object
