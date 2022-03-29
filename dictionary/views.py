@@ -1,6 +1,9 @@
 from typing import Any, Dict
 
 from django.db import models
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.utils.text import slugify
 from django.views import generic
 
 from .forms import DictionaryCreation
@@ -11,6 +14,16 @@ from .oxford import Entries, Lemmas
 class Index(generic.CreateView):
     form_class = DictionaryCreation
     template_name = "dictionary/index.html"
+
+    def post(self, request, **kwargs):
+
+        word = request.POST.get("word", "")
+        slug = slugify(word)
+        source = request.POST.get("source", "en-us")
+        if word and Dictionary.objects.filter(slug=slug, source=source).exists():
+            return redirect(reverse("dictionary:detail", args=(source, slug)))
+
+        return super().post(request, **kwargs)
 
     def get_queryset(self) -> models.query.QuerySet[Dictionary]:
         return Dictionary.objects.all().order_by("-created_at")
@@ -28,7 +41,8 @@ class Detail(generic.DetailView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         word = context["object"].word.lower()
-        oxford_entries = Entries(word)
+        source = context["object"].source.lower()
+        oxford_entries = Entries(word, source)
         oxford_entries_result = oxford_entries.result()
 
         if oxford_entries_result.get("msg"):
@@ -36,9 +50,14 @@ class Detail(generic.DetailView):
         elif oxford_entries_result.get("error"):
             context["object"].is_headword = False
             context["object"].save()
-            oxford_lemmas = Lemmas(word)
+            oxford_lemmas = Lemmas(word, source)
             context["oxford_lemmas"] = oxford_lemmas.result()
         else:
             context["oxford_entries"] = oxford_entries_result
 
         return context
+
+    def get_queryset(self) -> models.query.QuerySet[Dictionary]:
+        source = self.kwargs["source"]
+        slug = self.kwargs["slug"]
+        return Dictionary.objects.filter(source=source, slug=slug)
