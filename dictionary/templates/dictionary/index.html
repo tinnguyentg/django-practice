@@ -4,7 +4,7 @@
 <h1 class="text-2xl text-center font-black">Dictionaries</h1>
 
 <div class="mt-4">
-    <form class="flex justify-center items-center" method="post">
+    <form class="flex flex-wrap justify-center items-center" method="post">
         {% csrf_token %}
         
         {% for hidden in form.hidden_fields %}
@@ -18,16 +18,16 @@
         </div>
         {% endfor %}
 
-        <button class="btn submit-btn rounded-r" type="submit">Submit</button>
+        <button class="mt-2 sm:mt-0 btn submit-btn rounded-r" type="submit">Submit</button>
     </form>
 </div>
 
 {% if words %}
 <section class="mt-4 flex flex-row flex-wrap">
     {% for word in words %}
-    <a href="{% url 'dictionary:detail' word.slug %}">
+    <a href="{% url 'dictionary:detail' word.source word.slug %}">
         <span class="word {{ word.is_headword|yesno:"headword,not-headword"}}">
-            {{ word.word }}
+            {{ word.word }} ({{ word.source }})
         </span>
     </a>
     {% endfor %}
