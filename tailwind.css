@@ -4,7 +4,8 @@
 
 @layer base {
 
-    input {
+    input,
+    select {
         @apply p-2 border;
     }
 }
