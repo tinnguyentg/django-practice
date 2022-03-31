@@ -1,4 +1,5 @@
 node_modules/
+staticfiles/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
